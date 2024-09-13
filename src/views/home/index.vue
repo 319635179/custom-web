@@ -19,6 +19,7 @@ const schema: FormSchema = {
     b: {
       type: "object",
       label: "B",
+      occupy: 2,
       properties: {
         c: {
           label: "C",

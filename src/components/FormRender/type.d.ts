@@ -25,7 +25,7 @@ interface FormItem {
   required?: boolean; // 是否必要选择项
   hidden?: string | boolean; // 隐藏规则
   rules?: any; // 校验规则
-  occupy?: number;
+  occupy?: number; // 占用列数
   style?: {
     // 其他样式
     labelPosition?: LabelPosition;

@@ -47,7 +47,7 @@ const type = props.config.type || "string";
 const occupy = props.config.occupy || 1;
 const getItemStyle = () => {
   return {
-    "--form-item-width": `${100 / (props.column * occupy) - 0.01}%`,
+    "--form-item-width": `${(100 * occupy) / props.column - 0.01}%`,
   };
 };
 
