@@ -1,4 +1,4 @@
-type FormType = "string" | "number" | "boolean" | "object" | "array";
+type FormType = BaseType;
 type BaseMod = "collapse" | "label";
 type ObjectMod = "switch" | BaseMod;
 type LabelPosition = "left" | "right" | "top";
