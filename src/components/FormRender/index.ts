@@ -1,30 +1,46 @@
 import { FORM_TYPE_VALUE_DEFAULT_MAP } from "./constants.ts";
 
-export const useForm = (schema: FormSchema) => {
-  const setFromDefault = (obj: FormSchema["properties"], val: any) => {
-    const res = val || {};
-    Object.entries(obj).map(([key, v]) => {
-      const prop = v.prop || key;
-      const type = v.type || "string";
-      if (!res[prop]) {
-        // 赋默认值
-        res[prop] =
-          v.default === undefined
-            ? FORM_TYPE_VALUE_DEFAULT_MAP[type]
-            : v.default;
-      }
-      if (type === "object") {
-        res[prop] = setFromDefault(v.properties, res[prop]);
-      }
-    });
-    return res;
-  };
+/**
+ * @description 设置表单item默认值
+ * @description 优先级按照原始数据->默认值->类型默认值进行排列
+ * @param data 原始数据
+ * @param type 类型
+ * @param defaultVal 默认值
+ */
+export const setFormItemDefault = (
+  data: any,
+  type: FormType,
+  defaultVal?: any,
+) => {
+  return data || defaultVal || FORM_TYPE_VALUE_DEFAULT_MAP[type] || undefined;
+};
 
-  const initFrom = (val: any) => {
-    return setFromDefault(schema.properties, val);
-  };
-
-  return {
-    initFrom,
-  };
+/**
+ * @description 获取表单隐藏的方法
+ * @param hidden 隐藏的布尔值或方法字符串
+ * @param formData 表单数据
+ * @param prop 字段名称，用于错误提示
+ */
+export const getFormItemHidden = (
+  hidden?: string | boolean,
+  formData: any,
+  prop: string,
+) => {
+  if (typeof hidden === "boolean") {
+    return hidden;
+  }
+  if (!hidden || !formData) {
+    return false;
+  }
+  return Function(
+    "formData",
+    `
+    try{
+      return ${hidden}
+    } catch(e) {
+      console.error("FormItem Error!Can't read ${prop}'s hidden")
+      return false
+    }
+  `,
+  )(formData);
 };

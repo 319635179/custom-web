@@ -16,6 +16,7 @@
         :config="item"
         @change="handleItemChange"
         :column
+        :form-data="value"
       ></Item>
     </template>
   </el-form>
@@ -23,7 +24,6 @@
 
 <script setup lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import { useForm } from "./index.ts";
 import Item from "./item.vue";
 import "./index.less";
 
@@ -41,14 +41,12 @@ const labelWidth = props.schema?.labelWidth || 80;
 const labelPosition = props.schema?.labelPosition || "left";
 const column = props.schema?.column || 1;
 
-const { initFrom } = useForm(props.schema);
-
 const handleItemChange = (prop: string, path: string, val: any) => {
   emits("change", prop, path, val);
 };
 
 onMounted(() => {
-  value.value = initFrom(value.value);
+  value.value = value.value || {};
 });
 
 defineExpose({

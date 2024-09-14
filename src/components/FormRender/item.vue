@@ -1,5 +1,5 @@
 <template>
-  <div class="cw-form-item" :style="getItemStyle()">
+  <div class="cw-form-item" :style="getItemStyle()" v-if="!hidden">
     <ObjectItem
       v-if="type === 'object'"
       v-model="value"
@@ -29,7 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { computed, defineAsyncComponent, onMounted } from "vue";
+import { getFormItemHidden, setFormItemDefault } from "./index.ts";
 
 const ObjectItem = defineAsyncComponent(() => import("./object.vue"));
 const ArrayItem = defineAsyncComponent(() => import("./array.vue"));
@@ -40,6 +41,7 @@ const props = defineProps<{
   index: number;
   config: FormItem;
   column: number;
+  formData: any;
 }>();
 const emits = defineEmits(["change"]);
 const value = defineModel();
@@ -51,6 +53,10 @@ const getItemStyle = () => {
   };
 };
 
+const hidden = computed(() =>
+  getFormItemHidden(props.config.hidden, props.formData, props.prop),
+);
+
 const handleWidgetChange = (prop: string, val: any) => {
   emits("change", prop, prop, val);
 };
@@ -58,6 +64,10 @@ const handleWidgetChange = (prop: string, val: any) => {
 const handleObjChange = (prop: string, path: string, val: any) => {
   emits("change", prop, `${prop}${path}`, val);
 };
+
+onMounted(() => {
+  value.value = setFormItemDefault(value.value, type, props.config.default);
+});
 </script>
 
 <style scoped lang="less"></style>

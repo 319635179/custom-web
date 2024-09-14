@@ -13,13 +13,13 @@ const schema: FormSchema = {
   properties: {
     a: {
       label: "A",
-      type: "boolean",
       required: true,
+      default: "1",
     },
     b: {
       type: "object",
       label: "B",
-      occupy: 2,
+      occupy: 3,
       properties: {
         c: {
           label: "C",
@@ -42,6 +42,7 @@ const schema: FormSchema = {
     e: {
       label: "e",
       type: "array",
+      hidden: 'formData.a === "1"',
     },
   },
 };
