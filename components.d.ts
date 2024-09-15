@@ -8,7 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Array: typeof import('./src/components/FormRender/array.vue')['default']
-    Collapse: typeof import('./src/components/FormRender/collapse.vue')['default']
+    Collapse: typeof import('./src/components/FormRender/expand/collapse.vue')['default']
     CollapseRender: typeof import('./src/components/CollapseRender/index.vue')['default']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']

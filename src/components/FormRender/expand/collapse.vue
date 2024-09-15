@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import CollapseRender from "@/components/CollapseRender/index.vue";
 import CollapseItem from "@/components/CollapseRender/item.vue";
-import Item from "./item.vue";
+import Item from "../item.vue";
 
 const props = defineProps<{
   prop: string;

@@ -31,8 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import Item from "./item.vue";
-import Collapse from "./collapse.vue";
+import { defineAsyncComponent } from "vue";
+
+const Item = defineAsyncComponent(() => import("./item.vue"));
+const Collapse = defineAsyncComponent(() => import("./expand/collapse.vue"));
 
 const props = defineProps<{
   prop: string;
