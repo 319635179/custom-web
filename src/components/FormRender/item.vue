@@ -8,7 +8,7 @@
     v-if="!hidden"
   >
     <ObjectItem
-      v-if="type === 'object'"
+      v-if="type === 'object' && config.widget !== 'component'"
       v-model="model"
       :prop
       :index
@@ -17,7 +17,7 @@
       :formData
     />
     <ArrayItem
-      v-else-if="type === 'array'"
+      v-else-if="type === 'array' && config.widget !== 'component'"
       v-model="model"
       :prop
       :index
