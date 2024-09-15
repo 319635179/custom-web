@@ -5,10 +5,11 @@
     :labelWidth
     :labelPosition
     :disabled
+    @submit.native.prevent
   >
     <template v-if="value">
       <Item
-        v-for="(item, prop, index) in schema.properties"
+        v-for="(item, prop, index) in schema"
         v-model="value[item.prop || prop]"
         :key="item.prop || prop"
         :prop="item.prop || prop"
@@ -30,6 +31,9 @@ import "./index.less";
 const props = defineProps<{
   schema: FormSchema;
   disabled?: boolean;
+  labelWidth?: number; // label宽度
+  labelPosition?: LabelPosition;
+  column?: number; // 列数
 }>();
 
 const emits = defineEmits(["change"]);
@@ -37,9 +41,9 @@ const value = defineModel<any>();
 
 const tableRef = ref();
 
-const labelWidth = props.schema?.labelWidth || 80;
-const labelPosition = props.schema?.labelPosition || "left";
-const column = props.schema?.column || 1;
+const labelWidth = props.labelWidth || 80;
+const labelPosition = props.labelPosition || "left";
+const column = props.column || 1;
 
 const handleItemChange = (prop: string, path: string, val: any) => {
   emits("change", prop, path, val);

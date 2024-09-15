@@ -1,9 +1,15 @@
-type FormType = BaseType;
+type FormType = BaseType | "password";
 type BaseMod = "collapse" | "label";
 type ObjectMod = "switch" | BaseMod;
 type LabelPosition = "left" | "right" | "top";
 
-type WidgetType = "component" | "input" | "switch" | "input-number" | "select";
+type WidgetType =
+  | "component"
+  | "input"
+  | "switch"
+  | "input-number"
+  | "select"
+  | "password";
 
 interface FormItem {
   label: string;
@@ -34,11 +40,13 @@ interface FormItem {
   };
 }
 
+interface FormMetaItem extends FormItem {
+  prop: string;
+}
+interface FormEntry extends FormItem {
+  label?: string;
+}
+
 interface FormSchema {
-  labelWidth?: number; // label宽度
-  labelPosition?: LabelPosition;
-  column?: number; // 列数
-  properties: {
-    [key: string]: FormItem;
-  };
+  [key: string]: FormItem;
 }

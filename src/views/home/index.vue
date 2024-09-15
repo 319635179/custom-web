@@ -1,49 +1,50 @@
 <template>
-  <FormRender :schema v-model="data" @change="handleChange" />
+  {{ data }}
+  <FormRender :schema v-model="data" @change="handleChange" :column="3" />
 </template>
 
 <script setup lang="ts">
 import FormRender from "@/components/FormRender/index.vue";
 import { ref } from "vue";
+import { getFormItem } from "@/components/FormRender/tools.ts";
+import { NAME } from "@/meta/utils.ts";
 
 const data = ref();
 
 const schema: FormSchema = {
-  column: 3,
-  properties: {
-    a: {
-      label: "A",
-      required: true,
-      default: "1",
-    },
-    b: {
-      type: "object",
-      label: "B",
-      occupy: 3,
-      properties: {
-        c: {
-          label: "C",
-          default: "2",
-        },
+  ...getFormItem(NAME),
+  a: {
+    label: "A",
+    type: "password",
+    default: "1",
+  },
+  b: {
+    type: "object",
+    label: "B",
+    occupy: 2,
+    properties: {
+      c: {
+        label: "C",
+        default: "2",
       },
     },
-    d: {
-      type: "object",
-      label: "B",
-      properties: {
-        c: {
-          label: "C",
-        },
-      },
-      default: {
-        c: 2,
+  },
+  d: {
+    type: "object",
+    label: "B",
+    properties: {
+      c: {
+        label: "C",
       },
     },
-    e: {
-      label: "e",
-      type: "array",
-      hidden: 'formData.a === "1"',
+    default: {
+      c: 2,
     },
+  },
+  e: {
+    label: "e",
+    type: "array",
+    hidden: 'formData.a === "1"',
   },
 };
 
