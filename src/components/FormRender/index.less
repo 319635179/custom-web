@@ -1,23 +1,39 @@
 .cw-form-render {
+  --form-item-padding: 12px;
+  --form-margin-bottom: 12px;
+  --el-component-size: 30px;
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  --form-item-padding: 12px;
-  --form-margin-bottom: 12px;
 
   .cw-form-item {
     display: inline-block;
     width: var(--form-item-width);
-    height: 30px;
     box-sizing: border-box;
     margin-bottom: var(--form-margin-bottom);
     vertical-align: top;
   }
+  .el-form-item {
+    margin-bottom: 0;
+  }
+
   .el-form-item__label {
+    height: var(--el-component-size);
     padding-left: 8px;
   }
+
   .el-form-item__content {
     box-sizing: border-box;
     padding-right: var(--form-item-padding);
+  }
+
+  .cw-form-item-object >.el-form-item__content {
+    padding-right: 0;
+  }
+
+  .hidden-label >.el-form-item {
+    >.el-form-item__label {
+      display: none; // todo 需验证是否符合所有场景
+    }
   }
 }

@@ -1,11 +1,19 @@
 <template>
-  <div class="cw-form-item" :style="getItemStyle()" v-if="!hidden">
+  <div
+    class="cw-form-item"
+    :class="{
+      'hidden-label': hiddenLabel,
+    }"
+    :style="getItemStyle()"
+    v-if="!hidden"
+  >
     <ObjectItem
       v-if="type === 'object'"
       v-model="value"
       :prop
       :index
       :config
+      :hiddenLabel
       @change="handleObjChange"
     />
     <ArrayItem
@@ -14,6 +22,7 @@
       :prop
       :index
       :config
+      :hiddenLabel
       @change="handleObjChange"
     />
     <Widget
@@ -22,6 +31,7 @@
       :index
       :config
       :type
+      :hiddenLabel
       v-model="value"
       @change="handleWidgetChange"
     />
@@ -47,6 +57,8 @@ const emits = defineEmits(["change"]);
 const value = defineModel();
 const type = props.config.type || "string";
 const occupy = props.config.occupy || 1;
+const style = props.config.style || {};
+const hiddenLabel = style.hiddenLabel;
 const getItemStyle = () => {
   return {
     "--form-item-width": `${(100 * occupy) / props.column - 0.01}%`,

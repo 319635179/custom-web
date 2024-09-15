@@ -22,10 +22,23 @@ const schema: FormSchema = {
     type: "object",
     label: "B",
     occupy: 2,
+    style: {
+      column: 2,
+    },
     properties: {
       c: {
         label: "C",
         default: "2",
+        style: {
+          hiddenLabel: true,
+        },
+      },
+      d: {
+        label: "D",
+        default: "2",
+        style: {
+          hiddenLabel: true,
+        },
       },
     },
   },

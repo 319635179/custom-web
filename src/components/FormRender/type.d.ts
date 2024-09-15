@@ -36,6 +36,8 @@ interface FormItem {
     // 其他样式
     labelPosition?: LabelPosition;
     labelWidth?: number; // label宽度
+    column?: number; // obj或arr类型时，子元素所占列数
+    hiddenLabel?: boolean; // 是否隐藏label,优先级低于labelWidth
     [key: string]: any;
   };
 }
