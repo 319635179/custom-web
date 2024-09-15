@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import FormRender from "@/components/FormRender/index.vue";
-import { ref } from "vue";
+import { h, ref } from "vue";
 import { getFormItem } from "@/components/FormRender/tools.ts";
 import { NAME } from "@/meta/utils.ts";
 
@@ -17,6 +17,7 @@ const schema: FormSchema = {
     label: "A",
     type: "password",
     default: "1",
+    appendNode: h("span", "这是一个appendNode"),
   },
   b: {
     type: "object",
@@ -25,6 +26,7 @@ const schema: FormSchema = {
     style: {
       column: 2,
     },
+    appendNode: h("span", "这是一个appendNode"),
     properties: {
       c: {
         label: "C",
@@ -32,6 +34,7 @@ const schema: FormSchema = {
         style: {
           hiddenLabel: true,
         },
+        appendNode: h("span", "这是一个appendNode"),
       },
       d: {
         label: "D",

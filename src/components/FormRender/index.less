@@ -8,6 +8,7 @@
 
   .cw-form-item {
     display: inline-block;
+    position: relative;
     width: var(--form-item-width);
     box-sizing: border-box;
     margin-bottom: var(--form-margin-bottom);
@@ -35,5 +36,13 @@
     >.el-form-item__label {
       display: none; // todo 需验证是否符合所有场景
     }
+  }
+  .after-node {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    line-height: var(--el-component-size);
+    white-space: nowrap;
+    z-index: 1;
   }
 }

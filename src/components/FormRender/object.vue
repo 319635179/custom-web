@@ -5,7 +5,6 @@
     :label="config.label"
     :required="config.required"
     :rules="config.rules"
-    :label-width="hiddenLabel ? '0px' : undefined"
     v-bind="style"
   >
     <Item
@@ -29,7 +28,6 @@ const props = defineProps<{
   prop: string;
   index: number;
   config: FormItem;
-  hiddenLabel?: boolean;
 }>();
 const emits = defineEmits(["change"]);
 const value = defineModel();

@@ -13,7 +13,6 @@
       :prop
       :index
       :config
-      :hiddenLabel
       @change="handleObjChange"
     />
     <ArrayItem
@@ -22,7 +21,6 @@
       :prop
       :index
       :config
-      :hiddenLabel
       @change="handleObjChange"
     />
     <Widget
@@ -31,10 +29,12 @@
       :index
       :config
       :type
-      :hiddenLabel
       v-model="value"
       @change="handleWidgetChange"
     />
+    <div class="after-node" v-if="appendNode">
+      <component :is="appendNode" />
+    </div>
   </div>
 </template>
 
@@ -59,6 +59,8 @@ const type = props.config.type || "string";
 const occupy = props.config.occupy || 1;
 const style = props.config.style || {};
 const hiddenLabel = style.hiddenLabel;
+const appendNode = props.config.appendNode;
+
 const getItemStyle = () => {
   return {
     "--form-item-width": `${(100 * occupy) / props.column - 0.01}%`,

@@ -3,7 +3,6 @@
     :label="config.label"
     :required="config.required"
     :rules="config.rules"
-    :label-width="hiddenLabel ? '0px' : undefined"
     v-bind="style"
   >
     <!-- 1、字符类型 -->
@@ -62,7 +61,6 @@ const props = defineProps<{
   index: number;
   config: FormItem;
   type: FormType;
-  hiddenLabel?: boolean;
 }>();
 const emits = defineEmits(["change"]);
 
