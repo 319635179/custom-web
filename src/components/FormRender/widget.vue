@@ -8,20 +8,20 @@
     <!-- 1、字符类型 -->
     <el-input
       v-if="widget === 'input'"
-      v-model="value"
+      v-model="model"
       v-bind="config.attribute"
     ></el-input>
     <!-- 2、密码类型 -->
     <el-input
       v-if="widget === 'password'"
-      v-model="value"
+      v-model="model"
       v-bind="config.attribute"
       show-password
     ></el-input>
     <!-- 3、数字类型 -->
     <el-input-number
       v-else-if="widget === 'input-number'"
-      v-model="value"
+      v-model="model"
       :min="config.min"
       :max="config.max"
       v-bind="config.attribute"
@@ -29,13 +29,13 @@
     <!-- 4、布尔类型 -->
     <el-switch
       v-else-if="widget === 'switch'"
-      v-model="value"
+      v-model="model"
       v-bind="config.attribute"
     ></el-switch>
     <!-- 5、选择类型 -->
     <el-select
       v-else-if="widget === 'select'"
-      v-model="value"
+      v-model="model"
       v-bind="config.attribute"
     >
       <el-option
@@ -49,7 +49,7 @@
     <component
       v-else-if="widget === 'component' && config.component"
       :is="config.component"
-      v-model="value"
+      v-model="model"
       v-bind="config.attribute"
     ></component>
   </el-form-item>
@@ -64,10 +64,9 @@ const props = defineProps<{
 }>();
 const emits = defineEmits(["change"]);
 
-const value = defineModel({
+const model = defineModel({
   set(v: any) {
     emits("change", props.prop, v);
-
     return v;
   },
 });

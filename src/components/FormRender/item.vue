@@ -9,19 +9,21 @@
   >
     <ObjectItem
       v-if="type === 'object'"
-      v-model="value"
+      v-model="model"
       :prop
       :index
       :config
       @change="handleObjChange"
+      :formData
     />
     <ArrayItem
       v-else-if="type === 'array'"
-      v-model="value"
+      v-model="model"
       :prop
       :index
       :config
       @change="handleObjChange"
+      :formData
     />
     <Widget
       v-else
@@ -29,8 +31,9 @@
       :index
       :config
       :type
-      v-model="value"
+      v-model="model"
       @change="handleWidgetChange"
+      :formData
     />
     <div class="after-node" v-if="appendNode">
       <component :is="appendNode" />
@@ -39,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent, onMounted } from "vue";
+import { computed, defineAsyncComponent, nextTick, onMounted } from "vue";
 import { getFormItemHidden, setFormItemDefault } from "./index.ts";
 
 const ObjectItem = defineAsyncComponent(() => import("./object.vue"));
@@ -54,7 +57,7 @@ const props = defineProps<{
   formData: any;
 }>();
 const emits = defineEmits(["change"]);
-const value = defineModel();
+const model = defineModel();
 const type = props.config.type || "string";
 const occupy = props.config.occupy || 1;
 const style = props.config.style || {};
@@ -80,7 +83,10 @@ const handleObjChange = (prop: string, path: string, val: any) => {
 };
 
 onMounted(() => {
-  value.value = setFormItemDefault(value.value, type, props.config.default);
+  model.value = setFormItemDefault(model.value, type, props.config.default);
+  nextTick(() => {
+    console.log(props.prop, model.value);
+  });
 });
 </script>
 

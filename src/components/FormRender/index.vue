@@ -7,17 +7,17 @@
     :disabled
     @submit.native.prevent
   >
-    <template v-if="value">
+    <template v-if="model">
       <Item
         v-for="(item, prop, index) in schema"
-        v-model="value[item.prop || prop]"
+        v-model="model[item.prop || prop]"
         :key="item.prop || prop"
         :prop="item.prop || prop"
         :index="index"
         :config="item"
         @change="handleItemChange"
         :column
-        :form-data="value"
+        :form-data="model"
       ></Item>
     </template>
   </el-form>
@@ -37,7 +37,7 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits(["change"]);
-const value = defineModel<any>();
+const model = defineModel<any>();
 
 const tableRef = ref();
 
@@ -50,7 +50,7 @@ const handleItemChange = (prop: string, path: string, val: any) => {
 };
 
 onMounted(() => {
-  value.value = value.value || {};
+  model.value = model.value || {};
 });
 
 defineExpose({

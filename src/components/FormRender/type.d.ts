@@ -18,9 +18,10 @@ interface FormItem {
   widget?: WidgetType; // 组件类型
   options?: MetaItem[]; // 选项
   default?: any; // 默认值
+  disabled?: boolean | ((formData?: boolean) => boolean);
   attribute?: AnyObject; // 透传
   component?: any; // 自定义组件
-  properties?: FormSchema["properties"]; // obj或arr类型的子元素
+  properties?: FormSchema; // obj或arr类型的子元素
   min?: number; // 数字类型最小值
   max?: number; // 数字类型最大值
   appendNode?: any; // 后缀展示内容
