@@ -28,7 +28,7 @@ const router = createRouter({
 export const handleChangeRouter = (name: string, params?: any) => {
   router.push({
     name,
-    // params,
+    params,
   });
 };
 
