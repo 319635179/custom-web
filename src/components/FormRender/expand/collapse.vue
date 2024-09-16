@@ -41,7 +41,6 @@ const children = props.config.properties || {};
 const style = props.config.style || {};
 const column = style.column || 1;
 const handleItemChange = (prop: string, val: string) => {
-  console.log(prop, val);
   emits("change", prop, val);
 };
 const handleDel = () => {

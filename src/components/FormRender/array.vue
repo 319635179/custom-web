@@ -44,7 +44,6 @@ const handleAddItem = () => {
   model.value.push({});
 };
 const handleItemChange = (prop: string, path, val: string) => {
-  console.log(prop, path, val, props.prop);
   emits("change", prop, path, val);
 };
 const handleDel = (i: number) => {
