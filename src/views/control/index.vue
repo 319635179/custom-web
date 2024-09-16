@@ -28,7 +28,7 @@ const schema: FormSchema = {
     // appendNode: h("span", "这是一个appendNode"),
   },
   b: {
-    type: "object",
+    type: "array",
     label: "B",
     mod: "collapse",
     occupy: 2,
@@ -55,18 +55,22 @@ const schema: FormSchema = {
       },
     },
   },
-  // d: {
-  //   type: "object",
-  //   label: "B",
-  //   properties: {
-  //     c: {
-  //       label: "C",
-  //     },
-  //   },
-  //   default: {
-  //     c: 2,
-  //   },
-  // },
+  d: {
+    type: "object",
+    label: "D",
+    mod: "collapse",
+    properties: {
+      c: {
+        label: "C",
+        style: {
+          hiddenLabel: true,
+        },
+      },
+    },
+    default: {
+      c: 2,
+    },
+  },
   // e: {
   //   label: "e",
   //   type: "array",

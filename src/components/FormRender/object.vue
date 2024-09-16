@@ -27,6 +27,8 @@
     :config
     :formData
     @change="handleItemChange"
+    :use-del="isArray"
+    @del="handleDel"
   />
 </template>
 
@@ -41,8 +43,9 @@ const props = defineProps<{
   index: number;
   config: FormItem;
   formData: any;
+  isArray?: boolean; // 是数组类型的子元素
 }>();
-const emits = defineEmits(["change"]);
+const emits = defineEmits(["change", "del"]);
 const model = defineModel();
 const children = props.config.properties || {};
 const mod = props.config.mod || "label";
@@ -50,7 +53,15 @@ const style = props.config.style || {};
 const column = style.column || 1;
 
 const handleItemChange = (prop: string, val: string) => {
-  emits("change", props.prop, `${props.prop}.prop`, val);
+  emits(
+    "change",
+    prop,
+    `${props.isArray ? `[${props.index}]` : props.prop}.${prop}`,
+    val,
+  );
+};
+const handleDel = () => {
+  emits("del", props.index);
 };
 </script>
 

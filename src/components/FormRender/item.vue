@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent, nextTick, onMounted } from "vue";
+import { computed, defineAsyncComponent, onMounted } from "vue";
 import { getFormItemHidden, setFormItemDefault } from "./index.ts";
 
 const ObjectItem = defineAsyncComponent(() => import("./object.vue"));
@@ -75,18 +75,16 @@ const hidden = computed(() =>
 );
 
 const handleWidgetChange = (prop: string, val: any) => {
-  emits("change", prop, prop, val);
+  emits("change", prop, val);
 };
 
 const handleObjChange = (prop: string, path: string, val: any) => {
-  emits("change", prop, `${prop}${path}`, val);
+  console.log(prop, path);
+  emits("change", prop, `${prop}.${path}`, val);
 };
 
 onMounted(() => {
   model.value = setFormItemDefault(model.value, type, props.config.default);
-  nextTick(() => {
-    console.log(props.prop, model.value);
-  });
 });
 </script>
 
