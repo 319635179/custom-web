@@ -78,7 +78,7 @@ const schema: FormSchema = {
   // },
 };
 
-const handleChange = (...args) => {
+const handleChange = (...args: any) => {
   console.log(args);
 };
 </script>
