@@ -22,6 +22,7 @@
         <div class="options" v-else>
           <div>
             <el-button class="btn" @click="handleChangeRouter('control')"
+              ><span class="iconfont icon-comment-filling"></span
               >仪表盘</el-button
             >
             <el-button class="btn">资源</el-button>
