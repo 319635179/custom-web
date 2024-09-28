@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "run-p type-check build-only",
     "type-check": "vue-tsc --noEmit",
     "build-only": "vite build",

@@ -2,9 +2,9 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useContainerStore = defineStore("container", () => {
-  const useHeader = ref(false);
-  const useAside = ref(false);
-  const useMainPadding = ref(false);
+  const useHeader = ref(true);
+  const useAside = ref(true);
+  const useMainPadding = ref(true);
 
   const setHeader = (val: boolean) => {
     useHeader.value = val;
