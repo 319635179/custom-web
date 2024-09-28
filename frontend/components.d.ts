@@ -26,6 +26,7 @@ declare module 'vue' {
     Object: typeof import('./src/components/FormRender/object.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    User: typeof import('./src/components/HeaderRender/user.vue')['default']
     Widget: typeof import('./src/components/FormRender/widget.vue')['default']
   }
 }

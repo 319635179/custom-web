@@ -1,19 +1,31 @@
 <template>
-  <div class="cw-header">
-    <span class="name">Create Web</span>
-    <div class="options">登录</div>
-  </div>
+  <teleport v-if="el" :to="el">
+    <slot />
+  </teleport>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { J_HEADER_ID } from "@/constants/ids";
+import { onMounted, onUnmounted, ref } from "vue";
 
-<style scoped lang="less">
+const el = ref<HTMLElement | undefined>();
+onMounted(() => {
+  el.value = document.getElementById(J_HEADER_ID);
+});
+
+onUnmounted(() => {
+  el.value = null;
+});
+</script>
+
+<style lang="less">
 .cw-header {
   padding: 0 20px;
   box-sizing: border-box;
   background: var(--color-header);
   color: var(--color-white);
 }
+
 .options {
   float: right;
 }

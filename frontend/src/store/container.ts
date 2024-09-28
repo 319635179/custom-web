@@ -2,9 +2,10 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useContainerStore = defineStore("container", () => {
-  const useHeader = ref(true);
-  const useAside = ref(true);
-  const useMainPadding = ref(true);
+  const mount = ref(false);
+  const useHeader = ref(false);
+  const useAside = ref(false);
+  const useMainPadding = ref(false);
 
   const setHeader = (val: boolean) => {
     useHeader.value = val;
@@ -16,12 +17,22 @@ export const useContainerStore = defineStore("container", () => {
     useMainPadding.value = val;
   };
 
+  const init = () => {
+    mount.value = true;
+  };
+  const unMount = () => {
+    mount.value = false;
+  };
+
   return {
+    mount,
     useHeader,
     useAside,
     useMainPadding,
     setAside,
     setHeader,
     setMainPadding,
+    init,
+    unMount,
   };
 });

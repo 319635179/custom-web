@@ -7,9 +7,11 @@
       'no-main-padding': !container.useMainPadding,
     }"
   >
-    <header class="cw-header border-s-b" v-if="container.useHeader">
-      <header-render />
-    </header>
+    <header
+      class="cw-header border-s-b"
+      :id="J_HEADER_ID"
+      v-if="container.useHeader"
+    ></header>
     <main class="cw-main cw-container">
       <aside class="cw-aside va-t border-s-r" v-if="container.useAside"></aside>
       <main class="cw-main cw-view va-m">
@@ -20,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import HeaderRender from "@/components/HeaderRender/index.vue";
 import { useContainerStore } from "@/store/container.ts";
+import { J_HEADER_ID } from "@/constants/ids";
 
 const container = useContainerStore();
 </script>
@@ -31,15 +33,19 @@ const container = useContainerStore();
   width: 100%;
   height: calc(100vh - var(--header-height));
 }
+
 .no-header {
   --header-height: 0px;
 }
+
 .no-aside {
   --aside-width: 0px;
 }
+
 .no-main-padding {
   --padding-main: 0px;
 }
+
 .cw-view {
   display: inline-block;
   width: calc(100% - var(--aside-width));

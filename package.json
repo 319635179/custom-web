@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "cd ./frontend && npm start && cd ../backend && npm start"
+    "start-front": "cd ./frontend && npm start",
+    "start-back": "cd ./backend && npm start"
   }
 }
