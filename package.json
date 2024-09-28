@@ -4,6 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --host"
-  },
+    "start": "cd ./frontend && npm start && cd ../backend && npm start"
+  }
 }
