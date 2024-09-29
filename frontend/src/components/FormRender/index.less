@@ -1,0 +1,49 @@
+.cw-form-render {
+  --form-item-padding: 12px;
+  --form-margin-bottom: 12px;
+  --el-component-size: 30px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .cw-form-item {
+    display: inline-block;
+    position: relative;
+    width: var(--form-item-width);
+    box-sizing: border-box;
+    margin-bottom: var(--form-margin-bottom);
+    vertical-align: top;
+  }
+  .el-form-item {
+    margin-bottom: 0;
+  }
+
+  .el-form-item__label {
+    height: var(--el-component-size);
+    padding-left: 8px;
+  }
+
+  .el-form-item__content {
+    box-sizing: border-box;
+    padding-right: var(--form-item-padding);
+  }
+
+  .cw-form-item-object >.el-form-item__content {
+    padding-right: 0;
+  }
+
+  .hidden-label >.el-form-item {
+    >.el-form-item__label {
+      display: none; // todo 需验证是否符合所有场景
+    }
+  }
+  .after-node {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    line-height: var(--el-component-size);
+    white-space: nowrap;
+    z-index: 1;
+  }
+}
