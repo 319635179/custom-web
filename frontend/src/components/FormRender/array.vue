@@ -25,7 +25,7 @@
 import ObjectForm from "./object.vue";
 
 const props = defineProps<{
-  prop: string;
+  prop?: string;
   index: number;
   config: FormItem;
   formData: any;

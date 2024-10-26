@@ -6,13 +6,13 @@
       :disabled="config.disabled"
     >
       <template #options v-if="useDel">
-        <el-button @click="handleDel"> 删除 </el-button>
+        <el-button @click="handleDel"> 删除</el-button>
       </template>
       <Item
         v-for="(item, prop, i) in children"
         v-model="model[item.prop || prop]"
         :key="item.prop || prop"
-        :prop="item.prop || prop"
+        :prop="(item.prop || prop) as string"
         :index="i"
         :config="item"
         @change="handleItemChange"
@@ -29,14 +29,14 @@ import CollapseItem from "@/components/CollapseRender/item.vue";
 import Item from "../item.vue";
 
 const props = defineProps<{
-  prop: string;
+  prop?: string;
   index: number;
   config: FormItem;
   formData: any;
   useDel?: boolean; // 支持删除操作
 }>();
 const emits = defineEmits(["change", "del"]);
-const model = defineModel();
+const model = defineModel<any>();
 const children = props.config.properties || {};
 const style = props.config.style || {};
 const column = style.column || 1;

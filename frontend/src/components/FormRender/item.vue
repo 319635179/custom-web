@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { computed, defineAsyncComponent, onMounted } from "vue";
-import { getFormItemHidden, setFormItemDefault } from "./index.ts";
+import { getFormItemHidden, setFormItemDefault } from "./index";
 
 const ObjectItem = defineAsyncComponent(() => import("./object.vue"));
 const ArrayItem = defineAsyncComponent(() => import("./array.vue"));
@@ -57,7 +57,7 @@ const props = defineProps<{
   formData: any;
 }>();
 const emits = defineEmits(["change"]);
-const model = defineModel();
+const model = defineModel<any>();
 const type = props.config.type || "string";
 const occupy = props.config.occupy || 1;
 const style = props.config.style || {};

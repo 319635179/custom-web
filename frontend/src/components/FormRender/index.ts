@@ -1,4 +1,4 @@
-import { FORM_TYPE_VALUE_DEFAULT_MAP } from "./constants.ts";
+import { FORM_TYPE_VALUE_DEFAULT_MAP } from './constants';
 
 /**
  * @description 设置表单item默认值
@@ -23,8 +23,8 @@ export const setFormItemDefault = (
  */
 export const getFormItemHidden = (
   hidden?: string | boolean,
-  formData: any,
-  prop: string,
+  formData?: any,
+  prop?: string,
 ) => {
   if (typeof hidden === "boolean") {
     return hidden;

@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  prop: string;
+  prop?: string;
   index: number;
   config: FormItem;
   type: FormType;

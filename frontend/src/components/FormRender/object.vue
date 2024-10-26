@@ -11,7 +11,7 @@
       v-for="(item, prop, i) in children"
       v-model="model[item.prop || prop]"
       :key="item.prop || prop"
-      :prop="item.prop || prop"
+      :prop="(item.prop || prop) as string"
       :index="i"
       :config="item"
       @change="handleItemChange"
@@ -39,14 +39,14 @@ const Item = defineAsyncComponent(() => import("./item.vue"));
 const Collapse = defineAsyncComponent(() => import("./expand/collapse.vue"));
 
 const props = defineProps<{
-  prop: string;
+  prop?: string;
   index: number;
   config: FormItem;
   formData: any;
   isArray?: boolean; // 是数组类型的子元素
 }>();
 const emits = defineEmits(["change", "del"]);
-const model = defineModel();
+const model = defineModel<any>();
 const children = props.config.properties || {};
 const mod = props.config.mod || "label";
 const style = props.config.style || {};

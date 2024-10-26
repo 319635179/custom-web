@@ -12,7 +12,7 @@
         v-for="(item, prop, index) in schema"
         v-model="model[item.prop || prop]"
         :key="item.prop || prop"
-        :prop="item.prop || prop"
+        :prop="(item.prop || prop) as string"
         :index="index"
         :config="item"
         @change="handleItemChange"
