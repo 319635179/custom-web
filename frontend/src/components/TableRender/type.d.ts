@@ -1,4 +1,6 @@
-type TableWidget = "text" | "rank";
+import type { Component, VNode } from "vue";
+
+type TableWidget = "text" | "rank" | "component";
 type TableColumnType = "default" | "selection" | "index" | "expand";
 
 interface TableRenderProps {
@@ -22,6 +24,7 @@ interface TableColumn {
   label?: string;
   prop: string;
   widget?: TableWidget; // 预设单元格组件
+  component?: VNode | Component | any;
   type?: TableColumnType; // 单元格类型
   width?: number | string;
   minWidth?: number | string;
